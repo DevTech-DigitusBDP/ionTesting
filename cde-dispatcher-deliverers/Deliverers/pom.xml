@@ -1,0 +1,206 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-parent</artifactId>
+		<version>Dalston.RELEASE</version>
+	</parent>
+	<groupId>mx.gob.biometrics.datasharing</groupId>
+	<artifactId>deliverers</artifactId>
+	<version>${deliverer.version}</version>
+	<packaging>pom</packaging>
+
+	<name>deliverers</name>
+	<description>deliverers</description>
+
+	<properties>
+		<commons.version>4.2.4-RELEASE</commons.version>
+		<deliverer.version>4.2.4-RELEASE</deliverer.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<modules>
+		<module>deliverer-base</module>
+		<module>post-channel</module>
+		<module>deliverer-web</module>
+	</modules>
+
+	<organization>
+		<name>Alutiiq.com</name>
+		<url>https://www.alutiiq.com/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>jamador</id>
+			<name>José Roberto Amador Rivera</name>
+			<email>jamador@alutiiq.com</email>
+			<organization>Alutiiq</organization>
+			<organizationUrl>https://www.alutiiq.com/</organizationUrl>
+			<roles>
+				<role>Consultor Java</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>amedellin</id>
+			<name>Alejandra Medellin</name>
+			<email>malejandra1@alutiiq.com</email>
+			<organization>Alutiiq</organization>
+			<organizationUrl>https://www.alutiiq.com/</organizationUrl>
+			<roles>
+				<role>Consultor Java</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>mmiron</id>
+			<name>María Mercedes Mirón Flores</name>
+			<email>mmiron@altuiiq.com</email>
+			<organization>Alutiiq</organization>
+			<organizationUrl>https://www.alutiiq.com/</organizationUrl>
+			<roles>
+				<role>Consultor Java</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>sarcos</id>
+			<name>Sergio Arcos</name>
+			<email>sarcos@alutiiq</email>
+			<organization>Alutiiq</organization>
+			<organizationUrl>https://www.alutiiq.com/</organizationUrl>
+			<roles>
+				<role>Consultor Java</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<contributors>
+		<contributor>
+			<name>Jonathan Córdova</name>
+			<email>jcordova@alutiiq.com</email>
+			<organization>Alutiiq</organization>
+			<organizationUrl>https://www.alutiiq.com/</organizationUrl>
+			<roles>
+				<role>Project Manager</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>Miguel Reséndiz</name>
+			<email>mresendiz@alutiiq.com</email>
+			<organization>Alutiiq</organization>
+			<organizationUrl>https://www.alutiiq.com/</organizationUrl>
+			<roles>
+				<role>Product Owner</role>
+			</roles>
+		</contributor>
+		<contributor>
+			<name>León Ariel Méndez Rocha</name>
+			<email>lmenedz@alutiiq.com</email>
+			<organization>Alutiiq</organization>
+			<organizationUrl>https://www.alutiiq.com/</organizationUrl>
+			<roles>
+				<role>Scrum Master</role>
+			</roles>
+		</contributor>
+	</contributors>
+
+	<repositories>
+		<repository>
+			<id>m2repo.biometrics.digitus.release</id>
+			<url>s3://m2repo.biometrics.digitus.ubc/release</url>
+		</repository>
+		<repository>
+			<id>m2repo.biometrics.digitus.3rdparty</id>
+			<url>s3://m2repo.biometrics.digitus.ubc/3rdparty</url>
+		</repository>
+		<repository>
+			<id>m2repo.biometrics.digitus.snapshot</id>
+			<url>s3://m2repo.biometrics.digitus.ubc/snapshot</url>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>m2repo.biometrics.digitus</id>
+			<url>s3://m2repo.biometrics.digitus.ubc/snapshot</url>
+		</snapshotRepository>
+		<repository>
+			<id>m2repo.biometrics.digitus</id>
+			<url>s3://m2repo.biometrics.digitus.ubc/release</url>
+		</repository>
+	</distributionManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>mx.gob.biometrics.datasharing</groupId>
+				<artifactId>dispatcher-commons-business</artifactId>
+				<version>${commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mx.gob.biometrics.datasharing</groupId>
+				<artifactId>deliverer-base</artifactId>
+				<version>${deliverer.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mx.gob.biometrics.datasharing</groupId>
+				<artifactId>post-channel</artifactId>
+				<version>${deliverer.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>mx.gob.biometrics.datasharing</groupId>
+			<artifactId>dispatcher-commons-business</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.tomcat.embed</groupId>
+					<artifactId>tomcat-embed-websocket</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<extensions>
+			<extension>
+				<groupId>com.github.platform-team</groupId>
+				<artifactId>aws-maven</artifactId>
+				<version>6.0.0</version>
+			</extension>
+		</extensions>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version><!--$NO-MVN-MAN-VER$ -->
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
